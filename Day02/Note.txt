@@ -17,4 +17,4 @@ private = hanya bisa diakses di dalam class
 public = Dapat diakses di semua class 
 Setter Getter = Digunakan jika properties private dan protected (protected juga sepertinya ada effect)
 Overloading = Overloading tipe data constructornya harus berbeda (Tapi bukan constructor kosong yah salah satunya)
-Overriding = Parameter dan nilai return harus sama
+Overriding = Parameter (anak) dan nilai return (induk) harus sama
