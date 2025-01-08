@@ -1,0 +1,20 @@
+class = blueprint
+object = dibuat saat melakukan pembuatan instance
+Field/properties = yang dibuat menggunakan public/private variablenya
+this = Merujuk pada class itu sendiri
+Contoh:
+this.roda = roda
+- this.roda merujuk pada nilai properties class itu sendiri sedangkan roda dari parameternya. 
+PascalCase = Untuk penamaan Class.
+camelCase = Untuk variable dan function
+snake_case = Untuk field/column pada table suatu database
+UPPER_SANKE_CASE = Digunakan untuk penamaan nilai constanta(const keyword kalau di C# dan final jika di Java)
+inheritance = class yang memakai extends keyword
+overloading = Membuat 2 constructor
+constructor = Method yang memiliki nama yang sama dengan class
+protected = Hanya bisa diakses oleh class dan anak class mereka
+private = hanya bisa diakses di dalam class
+public = Dapat diakses di semua class 
+Setter Getter = Digunakan jika properties private dan protected (protected juga sepertinya ada effect)
+Overloading = Overloading tipe data constructornya harus berbeda (Tapi bukan constructor kosong yah salah satunya)
+Overriding = Parameter dan nilai return harus sama
