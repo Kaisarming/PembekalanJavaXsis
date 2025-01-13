@@ -1,23 +1,23 @@
-package com.xa.pembekalan;
+package com.pembekalan.xsisacademy;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.boot.autoconfigure.domain.EntityScan;
 import org.springframework.context.annotation.Bean;
+import org.springframework.web.bind.annotation.GetMapping;
 
-import com.xa.pembekalan.entity.Category;
-import com.xa.pembekalan.repository.CategoryRepository;
+import com.pembekalan.xsisacademy.entity.Category;
+import com.pembekalan.xsisacademy.repository.CategoryRepository;
 
 @SpringBootApplication
-public class PembekalanApplication {
+public class XsisacademyApplication {
 
 	@Autowired
 	CategoryRepository categoryRepository;
-
+	
 	public static void main(String[] args) {
-		SpringApplication.run(PembekalanApplication.class, args);
+		SpringApplication.run(XsisacademyApplication.class, args);
 	}
 
 	@Bean
