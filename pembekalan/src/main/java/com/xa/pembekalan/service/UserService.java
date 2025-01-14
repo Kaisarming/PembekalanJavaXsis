@@ -2,14 +2,19 @@ package com.xa.pembekalan.service;
 
 import java.util.List;
 
+import com.xa.pembekalan.dto.response.UserResponseDto;
+import com.xa.pembekalan.dto.request.UserRequestDto;
 import com.xa.pembekalan.entity.User;
 
+import org.modelmapper.ModelMapper;
+
 public interface UserService {
-    List<User> getAllUsers();
 
-    User getUserById(Integer id);
+    List<UserResponseDto> getAllUsers();
 
-    User saveUser(User user);
+    UserResponseDto getUserById(Integer id);
+
+    User saveUser(UserRequestDto user);
 
     void deleteUserById(Integer id);
 }

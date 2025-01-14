@@ -1,13 +1,12 @@
 function openForm() {
-    console.log("berhasil");
     $.ajax({
         type: "get",
         url: "/user/form",
         contentType: "html",
-        success: function (categoryForm) {
-            $('.modal').modal('show');
-            $('.modal-title').html('Category Form');
-            $('.modal-body').html(categoryForm);
+        success: function (userForm) {
+            $('#modalForm').modal('show');
+            $('.modal-title').html('User Form');
+            $('.modal-body').html(userForm);
         }
     });
 }
@@ -17,10 +16,10 @@ function editForm(id) {
         type: "get",
         url: `/user/edit/${id}`,
         contentType: "html",
-        success: function (categoryForm) {
-            $('.modal').modal('show');
-            $('.modal-title').html('Category Form');
-            $('.modal-body').html(categoryForm);
+        success: function (userForm) {
+            $('#modalForm').modal('show');
+            $('.modal-title').html('User Form');
+            $('.modal-body').html(userForm);
         }
     });
 }
