@@ -1,25 +1,24 @@
 function openForm() {
     console.log("berhasil");
     $.ajax({
-        type: "get",
         url: "/category/form",
+        type: "get",
         contentType: "html",
         success: function (categoryForm) {
-            $('#modalCreateCategory').modal('show');
+            $('.modal').modal('show');
             $('.modal-title').html('Category Form');
             $('.modal-body').html(categoryForm);
         }
     });
 }
 
-function editForm() {
-    console.log("berhasil");
+function editForm(id) {
     $.ajax({
         type: "get",
-        url: "/category/edit/${id}",
+        url: `/category/edit/${id}`,
         contentType: "html",
         success: function (categoryForm) {
-            $('#modalCreateCategory').modal('show');
+            $('.modal').modal('show');
             $('.modal-title').html('Category Form');
             $('.modal-body').html(categoryForm);
         }

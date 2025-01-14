@@ -2,32 +2,10 @@
 <html lang="en" xmlns="https://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
     layout:decorate="~{layout/main}">
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title th:text="${title}">Document</title>
-    <link rel="stylesheet" href="css/bootstrap.min.css">
-    <!--<script th:src="@{/js/category.js}"></script>-->
-    <script>
-        function openForm() {
-            console.log("berhasil");
-            $.ajax({
-                type: "get",
-                url: "/category/form",
-                contentType: "html",
-                success: function (categoryForm) {
-                    $('#modalCreateCategory').modal('show');
-                    $('.modal-title').html('Category Form');
-                    $('.modal-body').html(categoryForm);
-                }
-            });
-        }
-    </script>
-
-</head>
-
 <body>
+
     <section layout:fragment="container">
+        <script th:src="@{js/category.js}"></script>
         <h1 th:text="${title}"></h1>
         <div>
             <button type="button" class="btn btn-primary mt-3 mb-2" onclick="openForm()">
@@ -37,7 +15,7 @@
         <table class="table">
             <thead>
                 <tr>
-                    <th scope="col"></th>
+                    <th scope="col">No.</th>
                     <th scope="col">Category Name</th>
                     <th scope="col">Action</th>
                 </tr>
@@ -47,43 +25,39 @@
                     <th scope="row" th:text="${iter.count}"></th>
                     <td th:text="${category.name}"></td>
                     <td>
-                        <button type="button" class="btn btn-primary" data-bs-toggle="modal"
-                            data-bs-target="#modalCategory">
-                            Details
-                        </button>
+                        <div>
+                            <button type="button" class="btn btn-primary" th:value="${category.id}"
+                                onclick="editForm(this.value)">Edit</button>
+                            <button type="button" class="btn btn-primary">Reset</button>
+                            <button type="button" class="btn btn-primary">Delete</button>
+                        </div>
                     </td>
                 </tr>
             </tbody>
         </table>
 
-        <div class="modal fade" id="modalCategory" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+
+        <div class="modal" tabindex="-1">
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h1 class="modal-title fs-5" id="exampleModalLabel">Category Details</h1>
+                        <h5 class="modal-title"></h5>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
-                        <div class="form-floating">
-                            <textarea class="form-control" placeholder="Leave a comment here"
-                                id="floatingTextarea"></textarea>
-                            <label for="floatingTextarea">Comments</label>
-                        </div>
+
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-primary" th:value="${category.id}"
-                            onclick="editForm(this.value)">Update</button>
-                        <button type="button" class="btn btn-primary">Reset</button>
-                        <button type="button" class="btn btn-primary">Delete</button>
+
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <script th:src="@{js/bootstrap.bundle.min.js}"></script>
 
 
 </body>
+
 
 </html>

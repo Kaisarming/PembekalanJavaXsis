@@ -38,6 +38,8 @@ public class CategoryController {
     @GetMapping("/form")
     public ModelAndView form() {
         ModelAndView view = new ModelAndView("category/form");
+        Category category = new Category();
+        view.addObject("categories", category);
         return view;
     }
 
@@ -50,11 +52,10 @@ public class CategoryController {
     }
 
     @GetMapping("/edit/{id}")
-    public ModelAndView getMethodName(@PathVariable Integer id) {
+    public ModelAndView edit(@PathVariable Integer id) {
         ModelAndView view = new ModelAndView("category/form");
         Category category = categoryRepository.findById(id).orElse(null);
         view.addObject("category", category);
         return view;
     }
-
 }
