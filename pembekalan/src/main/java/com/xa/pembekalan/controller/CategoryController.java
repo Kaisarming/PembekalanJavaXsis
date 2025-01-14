@@ -39,7 +39,7 @@ public class CategoryController {
     public ModelAndView form() {
         ModelAndView view = new ModelAndView("category/form");
         Category category = new Category();
-        view.addObject("categories", category);
+        view.addObject("category", category);
         return view;
     }
 
