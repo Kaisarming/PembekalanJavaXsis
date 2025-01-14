@@ -1,39 +1,37 @@
 package com.xa.pembekalan.entity;
 
-import java.time.LocalDateTime;
-
-import org.hibernate.annotations.CreationTimestamp;
-import org.hibernate.annotations.UpdateTimestamp;
-
-import groovy.transform.EqualsAndHashCode;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
-import jakarta.persistence.Temporal;
-import jakarta.persistence.TemporalType;
-import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
 @Entity
-@Table(name = "categories")
+@Table(name = "users")
 @Data
 @EqualsAndHashCode(callSuper = true)
 @NoArgsConstructor
-public class Category extends BaseEntity {
+public class User extends BaseEntity {
 
-    public Category(String name) {
+    public User(String name, String phoneNumber, String address) {
         this.name = name;
+        this.phoneNumber = phoneNumber;
+        this.address = address;
     }
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
     private Integer id;
 
     @Column(length = 100)
     private String name;
+
+    @Column(length = 20, unique = true)
+    private String phoneNumber;
+
+    private String address;
 }

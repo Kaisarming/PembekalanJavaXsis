@@ -1,5 +1,7 @@
 package com.xa.pembekalan;
 
+import java.util.Locale;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -7,14 +9,20 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.domain.EntityScan;
 import org.springframework.context.annotation.Bean;
 
+import com.github.javafaker.Faker;
 import com.xa.pembekalan.entity.Category;
+import com.xa.pembekalan.entity.User;
 import com.xa.pembekalan.repository.CategoryRepository;
+import com.xa.pembekalan.repository.UserRepository;
 
 @SpringBootApplication
 public class PembekalanApplication {
 
 	@Autowired
 	CategoryRepository categoryRepository;
+
+	@Autowired
+	UserRepository userRepository;
 
 	public static void main(String[] args) {
 		SpringApplication.run(PembekalanApplication.class, args);
@@ -30,6 +38,14 @@ public class PembekalanApplication {
 			categoryRepository.save(thriller);
 			categoryRepository.save(novel);
 			categoryRepository.save(horror);
+
+			Faker faker = new Faker(Locale.forLanguageTag("id-ID"));
+
+			for (int i = 0; i < 10; i++) {
+				User userSeed = new User(faker.name().fullName(), faker.phoneNumber().phoneNumber(),
+						faker.address().fullAddress());
+				userRepository.save(userSeed);
+			}
 		};
 	}
 

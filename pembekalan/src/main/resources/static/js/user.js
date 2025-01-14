@@ -2,7 +2,7 @@ function openForm() {
     console.log("berhasil");
     $.ajax({
         type: "get",
-        url: "/category/form",
+        url: "/user/form",
         contentType: "html",
         success: function (categoryForm) {
             $('.modal').modal('show');
@@ -15,7 +15,7 @@ function openForm() {
 function editForm(id) {
     $.ajax({
         type: "get",
-        url: `/category/edit/${id}`,
+        url: `/user/edit/${id}`,
         contentType: "html",
         success: function (categoryForm) {
             $('.modal').modal('show');
@@ -25,10 +25,10 @@ function editForm(id) {
     });
 }
 
-function deleteCategory(id) {
+function deleteUser(id) {
     $.ajax({
         type: "get",
-        url: `/category/delete/${id}`,
+        url: `/user/delete/${id}`,
         contentType: "html",
         success: function (response) {
             location.reload();

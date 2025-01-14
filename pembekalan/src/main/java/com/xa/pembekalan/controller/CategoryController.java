@@ -11,6 +11,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.xa.pembekalan.entity.Category;
 import com.xa.pembekalan.repository.CategoryRepository;
 
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -57,5 +58,12 @@ public class CategoryController {
         Category category = categoryRepository.findById(id).orElse(null);
         view.addObject("category", category);
         return view;
+    }
+
+    @GetMapping("/delete/{id}")
+    public String delete(@PathVariable Integer id) {
+        Category category = categoryRepository.findById(id).orElse(null);
+        categoryRepository.deleteById(category.getId());
+        return "redirect:/category";
     }
 }

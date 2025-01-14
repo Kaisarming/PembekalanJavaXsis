@@ -28,8 +28,8 @@
                         <div>
                             <button type="button" class="btn btn-primary" th:value="${category.id}"
                                 onclick="editForm(this.value)">Edit</button>
-                            <button type="button" class="btn btn-primary">Reset</button>
-                            <button type="button" class="btn btn-primary">Delete</button>
+                            <button type="button" class="btn btn-primary" th:value="${category.id}"
+                                onclick="confirm('Are you sure?', deleteCategory(this.value))">Delete</button>
                         </div>
                     </td>
                 </tr>
