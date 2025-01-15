@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.boot.autoconfigure.domain.EntityScan;
 import org.springframework.context.annotation.Bean;
 
 import com.github.javafaker.Faker;
@@ -14,6 +13,8 @@ import com.xa.pembekalan.entity.Category;
 import com.xa.pembekalan.entity.User;
 import com.xa.pembekalan.repository.CategoryRepository;
 import com.xa.pembekalan.repository.UserRepository;
+import com.xa.pembekalan.entity.Publisher;
+import com.xa.pembekalan.repository.PublisherRepository;
 
 @SpringBootApplication
 public class PembekalanApplication {
@@ -23,6 +24,9 @@ public class PembekalanApplication {
 
 	@Autowired
 	UserRepository userRepository;
+
+	@Autowired
+	PublisherRepository publisherRepository;
 
 	public static void main(String[] args) {
 		SpringApplication.run(PembekalanApplication.class, args);
@@ -45,6 +49,11 @@ public class PembekalanApplication {
 				User userSeed = new User(faker.name().fullName(), faker.phoneNumber().phoneNumber(),
 						faker.address().fullAddress());
 				userRepository.save(userSeed);
+			}
+
+			for (int i = 0; i < 10; i++) {
+				Publisher publisherSeed = new Publisher(faker.book().publisher(), faker.address().fullAddress());
+				publisherRepository.save(publisherSeed);
 			}
 		};
 	}

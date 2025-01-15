@@ -6,8 +6,6 @@ import com.xa.pembekalan.dto.response.UserResponseDto;
 import com.xa.pembekalan.dto.request.UserRequestDto;
 import com.xa.pembekalan.entity.User;
 
-import org.modelmapper.ModelMapper;
-
 public interface UserService {
 
     List<UserResponseDto> getAllUsers();
