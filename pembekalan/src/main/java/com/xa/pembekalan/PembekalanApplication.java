@@ -11,6 +11,7 @@ import org.springframework.context.annotation.Bean;
 import com.github.javafaker.Faker;
 import com.xa.pembekalan.entity.Category;
 import com.xa.pembekalan.entity.User;
+import com.xa.pembekalan.repository.AuthorRepository;
 import com.xa.pembekalan.repository.CategoryRepository;
 import com.xa.pembekalan.repository.UserRepository;
 import com.xa.pembekalan.entity.Publisher;
@@ -27,6 +28,9 @@ public class PembekalanApplication {
 
 	@Autowired
 	PublisherRepository publisherRepository;
+
+	@Autowired
+	AuthorRepository authorRepository;
 
 	public static void main(String[] args) {
 		SpringApplication.run(PembekalanApplication.class, args);
