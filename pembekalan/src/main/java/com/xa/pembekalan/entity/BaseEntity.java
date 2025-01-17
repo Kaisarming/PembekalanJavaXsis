@@ -25,7 +25,7 @@ public class BaseEntity {
     private Boolean isDeleted = false;
 
     @CreationTimestamp
-    @Temporal(TemporalType.TIMESTAMP)
+    @Temporal(TemporalType.TIMESTAMP) // Artinya field ini akan menyimpan tanggal dan waktu (timestamp)
     private LocalDateTime createdAt;
 
     @UpdateTimestamp

@@ -9,6 +9,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 
 import com.github.javafaker.Faker;
+import com.xa.pembekalan.entity.Author;
 import com.xa.pembekalan.entity.Category;
 import com.xa.pembekalan.entity.User;
 import com.xa.pembekalan.repository.AuthorRepository;
@@ -58,6 +59,11 @@ public class PembekalanApplication {
 			for (int i = 0; i < 10; i++) {
 				Publisher publisherSeed = new Publisher(faker.book().publisher(), faker.address().fullAddress());
 				publisherRepository.save(publisherSeed);
+			}
+
+			for (int i = 0; i < 20; i++) {
+				Author authorSeed = new Author(faker.book().author(), faker.book().title());
+				authorRepository.save(authorSeed);
 			}
 		};
 	}
