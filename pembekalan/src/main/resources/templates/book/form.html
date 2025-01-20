@@ -1,0 +1,12 @@
+<form th:action="@{~/author/save}" th:object="${author}" method="post">
+    <input type="hidden" name="authorId" id="authorId" th:field="*{authorId}">
+    <div class="mb-3">
+        <label for="name" class="form-label">Author's Name</label>
+        <input type="text" class="form-control" id="name" name="name" th:field="*{name}">
+    </div>
+    <div class="mb-3">
+        <label for="publishedBook" class="form-label">Published Book</label>
+        <input type="text" class="form-control" id="publishedBook" name="publishedBook" th:field="*{publishedBook}">
+    </div>
+    <button type="submit" class="bg-primary text-white rounded" style="float: right">Save</button>
+</form>

@@ -1,5 +1,4 @@
-package com.exampleapi.libraryapi.apicontroller;
-
+package com.xa.pembekalan.controller;
 
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -9,12 +8,16 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.client.RestTemplate;
 
+import com.github.javafaker.Dune.Quote;
+import com.xa.pembekalan.dto.response.BookResponseDto;
+import com.xa.pembekalan.service.BookService;
 import org.springframework.web.bind.annotation.GetMapping;
 
 @RestController
 @RequestMapping("/api/book")
-public class BookController {
+public class BookControllerApi {
 
     @Autowired
     BookService bookService;
@@ -26,6 +29,7 @@ public class BookController {
         resultMap.put("status", "200");
         resultMap.put("message", "success");
         resultMap.put("data", bookResponseDtos);
+        // resultMap.put("title", "Book Page");
         return new ResponseEntity<>(resultMap, HttpStatus.OK);
     }
 
