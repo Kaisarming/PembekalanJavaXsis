@@ -1,13 +1,38 @@
 <form th:action="@{~/api/book}" th:object="${book}" method="post">
-    <!-- <input type="hidden" name="id" id="id" th:field="*{id}">
+    <input type="hidden" name="id" id="id" th:field="*{id}">
     <div class="mb-3">
         <label for="selectAuthor" class="form-label">Author's Name</label>
-        <select class="form-select" id="selectAuthor" th:field="*{a.authorId}" th:each="a : ${authors}">
-            <option th:value="${a.authorId}" th:field="*{authorId}" th:object="${authors}">
+        <select class="form-select" id="selectAuthor" th:field="*{author.authorId}">
+            <option th:each="a : ${authors}" th:value="${a.authorId}" th:text="${a.name}"></option>
+        </select>
+    </div>
+    <!-- <div class="mb-3">
+        <label for="selectCategory" class="form-label">Category</label>
+        <select class="form-select" id="selectCategory" th:field="*{category.categoryId}" th:each="c : ${categories}">
+            <option th:value="${c.categoryId}">${c.name}</option>
+        </select>
+    </div>
+    <div class="mb-3">
+        <label for="selectPublisher" class="form-label">Publisher</label>
+        <select class="form-select" id="selectPublisher" th:field="*{publisher.publisherId}"
+            th:each="p : ${publishers}">
+            <option th:value="${p.publisherId}">${p.name}</option>
+        </select> -->
+    </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+
+
+<!-- <form th:action="@{~/api/book}" th:object="${book}" method="post">
+    <input type="hidden" name="id" id="id" th:field="*{id}">
+    <div class="mb-3">
+        <label for="selectAuthor" class="form-label">Author's Name</label>
+        <select class="form-select" id="selectAuthor" th:each="a : ${author}">
+            <option th:value="${a.authorId}" th:field="*{authorId}">
                 "${a.name}"</option>
         </select>
-    </div> -->
-    <!-- <div class="mb-3">
+    </div>
+    <div class="mb-3">
         <label for="selectCategory" class="form-label">Book's Category</label>
         <select class="form-select" id="selectCategory">
             <option selected>Select Category's Name</option>
@@ -41,5 +66,5 @@
         <label for="publishedAt" class="form-label">Published At</label>
         <input type="text" class="form-control" id="publishedAt" name="publishedAt" th:field="*{publishedAt}">
     </div>
-    <button type="submit" class="bg-primary text-white rounded" style="float: right">Save</button> -->
-</form>
+    <button type="submit" class="bg-primary text-white rounded" style="float: right">Save</button>
+</form> -->
