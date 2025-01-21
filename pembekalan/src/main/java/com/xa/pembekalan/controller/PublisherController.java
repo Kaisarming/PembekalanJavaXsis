@@ -1,6 +1,5 @@
 package com.xa.pembekalan.controller;
 
-import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
 
@@ -17,7 +16,6 @@ import org.springframework.web.bind.annotation.RestController;
 import com.xa.pembekalan.dto.request.PublisherRequestDto;
 import com.xa.pembekalan.dto.response.PublisherResponseDto;
 import com.xa.pembekalan.service.PublisherService;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.PutMapping;

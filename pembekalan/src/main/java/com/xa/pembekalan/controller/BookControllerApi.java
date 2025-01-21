@@ -11,9 +11,13 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 
 import com.github.javafaker.Dune.Quote;
+import com.xa.pembekalan.dto.request.BookRequestDto;
 import com.xa.pembekalan.dto.response.BookResponseDto;
+import com.xa.pembekalan.entity.Book;
 import com.xa.pembekalan.service.BookService;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 
 @RestController
 @RequestMapping("/api/book")
@@ -29,8 +33,16 @@ public class BookControllerApi {
         resultMap.put("status", "200");
         resultMap.put("message", "success");
         resultMap.put("data", bookResponseDtos);
-        // resultMap.put("title", "Book Page");
         return new ResponseEntity<>(resultMap, HttpStatus.OK);
     }
 
+    @PostMapping("")
+    public ResponseEntity<?> saveBook(@RequestBody BookRequestDto bookRequestDto) {
+        Book book = bookService.saveBook(bookRequestDto);
+        LinkedHashMap<String, Object> resultMap = new LinkedHashMap<>();
+        resultMap.put("status", "200");
+        resultMap.put("message", "success");
+        resultMap.put("data", book);
+        return new ResponseEntity<>(resultMap, HttpStatus.OK);
+    }
 }

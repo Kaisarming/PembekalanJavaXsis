@@ -1,12 +1,45 @@
-<form th:action="@{~/author/save}" th:object="${author}" method="post">
-    <input type="hidden" name="authorId" id="authorId" th:field="*{authorId}">
+<form th:action="@{~/api/book}" th:object="${book}" method="post">
+    <!-- <input type="hidden" name="id" id="id" th:field="*{id}">
     <div class="mb-3">
-        <label for="name" class="form-label">Author's Name</label>
-        <input type="text" class="form-control" id="name" name="name" th:field="*{name}">
+        <label for="selectAuthor" class="form-label">Author's Name</label>
+        <select class="form-select" id="selectAuthor" th:field="*{a.authorId}" th:each="a : ${authors}">
+            <option th:value="${a.authorId}" th:field="*{authorId}" th:object="${authors}">
+                "${a.name}"</option>
+        </select>
+    </div> -->
+    <!-- <div class="mb-3">
+        <label for="selectCategory" class="form-label">Book's Category</label>
+        <select class="form-select" id="selectCategory">
+            <option selected>Select Category's Name</option>
+            <option value="1">One</option>
+            <option value="2">Two</option>
+            <option value="3">Three</option>
+        </select>
     </div>
     <div class="mb-3">
-        <label for="publishedBook" class="form-label">Published Book</label>
-        <input type="text" class="form-control" id="publishedBook" name="publishedBook" th:field="*{publishedBook}">
+        <label for="selectPublisher" class="form-label">Book's Title</label>
+        <select class="form-select" id="selectPublisher">
+            <option selected>Select Publisher's Name</option>
+            <option value="1">One</option>
+            <option value="2">Two</option>
+            <option value="3">Three</option>
+        </select>
     </div>
-    <button type="submit" class="bg-primary text-white rounded" style="float: right">Save</button>
+    <div class="mb-3">
+        <label for="bookTitle" class="form-label">Book's Title</label>
+        <input type="text" class="form-control" id="bookTitle" name="bookTitle" th:field="*{title}">
+    </div>
+    <div class="mb-3">
+        <label for="synopsis" class="form-label">Synopsis</label>
+        <input type="text" class="form-control" id="synopsis" name="synopsis" th:field="*{synopsis}">
+    </div>
+    <div class="mb-3">
+        <label for="stock" class="form-label">Stock</label>
+        <input type="text" class="form-control" id="stock" name="stock" th:field="*{stock}">
+    </div>
+    <div class="mb-3">
+        <label for="publishedAt" class="form-label">Published At</label>
+        <input type="text" class="form-control" id="publishedAt" name="publishedAt" th:field="*{publishedAt}">
+    </div>
+    <button type="submit" class="bg-primary text-white rounded" style="float: right">Save</button> -->
 </form>

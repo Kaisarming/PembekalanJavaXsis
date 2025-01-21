@@ -41,6 +41,9 @@ public class BookServiceImpl implements BookService {
     @Override
     public Book saveBook(BookRequestDto bookRequestDto) {
         Book book = new Book();
+        book.setCategory(bookRequestDto.getCategory());
+        book.setAuthor(bookRequestDto.getAuthor());
+        book.setPublisher(bookRequestDto.getPublisher());
         book.setId(bookRequestDto.getId());
         book.setTitle(bookRequestDto.getTitle());
         book.setSynopsis(bookRequestDto.getSynopsis());

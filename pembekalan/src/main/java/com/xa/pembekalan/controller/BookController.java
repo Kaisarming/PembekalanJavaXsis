@@ -10,16 +10,30 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.xa.pembekalan.config.ApiEndpoints;
 import com.xa.pembekalan.dto.response.AuthorResponseDto;
-import com.xa.pembekalan.dto.response.BookResponseDto;
-import com.xa.pembekalan.service.BookService;
+import com.xa.pembekalan.dto.response.PublisherResponseDto;
+import com.xa.pembekalan.entity.Book;
+import com.xa.pembekalan.entity.Category;
+import com.xa.pembekalan.repository.CategoryRepository;
+
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.servlet.ModelAndView;
+
+import com.xa.pembekalan.service.AuthorService;
+import com.xa.pembekalan.service.PublisherService;
 
 @Controller
 @RequestMapping("/book")
 public class BookController {
+
+    @Autowired
+    AuthorService authorService;
+
+    @Autowired
+    CategoryRepository categoryRepository;
+
+    @Autowired
+    PublisherService publisherService;
 
     private final RestTemplate restTemplate = new RestTemplate();
 
@@ -32,17 +46,18 @@ public class BookController {
         return "book/index";
     }
 
-    // @Autowired
-    // BookService bookService;
-
-    // @GetMapping("")
-    // public ModelAndView index() {
-    // ModelAndView view = new ModelAndView("book/index");
-    // List<BookResponseDto> bookResponseDtos = bookService.getAllBooks();
-    // String title = "Book List";
-    // view.addObject("title", title);
-    // view.addObject("books", bookResponseDtos);
-    // return view;
-    // }
+    @GetMapping("/form")
+    public ModelAndView showForm() {
+        ModelAndView view = new ModelAndView("book/form");
+        Book book = new Book();
+        List<AuthorResponseDto> authorResponseDtos = authorService.getAllAuthors();
+        List<Category> categories = categoryRepository.findAll();
+        List<PublisherResponseDto> publisherResponseDtos = publisherService.getAllPublishers();
+        view.addObject("authors", authorResponseDtos);
+        view.addObject("categories", categories);
+        view.addObject("publishers", publisherResponseDtos);
+        view.addObject("book", book);
+        return view;
+    }
 
 }
