@@ -9,9 +9,7 @@ import com.xa.pembekalan.entity.Book;
 public interface BookService {
     List<BookResponseDto> getAllBooks();
 
-    Book saveBook(Book book);
-
-    // Book saveBook(BookRequestDto bookRequestDto);
+    Book saveBook(BookRequestDto bookRequestDto);
 
     BookResponseDto getBookById(Integer id);
 

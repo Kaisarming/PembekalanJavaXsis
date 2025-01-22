@@ -1,4 +1,4 @@
-<form th:action="@{~/api/book}" th:object="${book}" method="post">
+<form th:object="${book}" id="bookForm" method="post">
     <input type="hidden" name="id" id="id" th:field="*{id}">
     <div class="mb-3">
         <label for="selectAuthor" class="form-label">Author's Name</label>
@@ -32,35 +32,37 @@
     </div>
     <div class="mb-3">
         <label for="publishedAt" class="form-label">Published At</label>
-        <input type="text" class="form-control" id="publishedAt" name="publishedAt" th:field="*{publishedAt}">
+        <input type="date" class="form-control" id="publishedAt" name="publishedAt" th:field="*{publishedAt}">
     </div>
     <button type="submit" class="bg-primary text-white rounded" style="float: right"
         onclick="submitForm()">Save</button>
 </form>
 
 <script>
-    function submitForm() {
-        const form = document.getElementById('bookForm');
-        const data = {
-            id: form.id.value,
-            authorId: form.selectAuthor.value,
-            categoryId: form.selectCategory.value,
-            publisherId: form.selectPublisher.value,
-            title: form.bookTitle.value,
-            synopsis: form.synopsis.value,
-            stock: form.stock.value,
-            publishedAt: form.publishedAt.value
-        };
 
-        fetch('/api/books', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(data)
-        })
-            .then(response => response.json())
-            .then(data => console.log(data))
-            .catch(error => console.error('Error:', error));
-    }
+
+    // function submitForm() {
+    //     const form = document.getElementById('bookForm');
+    //     const data = {
+    //         id: form.id.value,
+    //         authorId: form.selectAuthor.value,
+    //         categoryId: form.selectCategory.value,
+    //         publisherId: form.selectPublisher.value,
+    //         title: form.bookTitle.value,
+    //         synopsis: form.synopsis.value,
+    //         stock: form.stock.value,
+    //         publishedAt: form.publishedAt.value
+    //     };
+
+    //     fetch('/api/books', {
+    //         method: 'POST',
+    //         headers: {
+    //             'Content-Type': 'application/json'
+    //         },
+    //         body: JSON.stringify(data)
+    //     })
+    //         .then(response => response.json())
+    //         .then(data => console.log(data))
+    //         .catch(error => console.error('Error:', error));
+    // }
 </script>

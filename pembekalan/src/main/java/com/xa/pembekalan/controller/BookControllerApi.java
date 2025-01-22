@@ -35,22 +35,15 @@ public class BookControllerApi {
         return new ResponseEntity<>(resultMap, HttpStatus.OK);
     }
 
-    @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<Book> createBook(@RequestBody Book book) {
-        Book savedBook = bookService.saveBook(book);
-        return new ResponseEntity<>(savedBook, HttpStatus.CREATED);
+    @PostMapping("/save")
+    public ResponseEntity<?> saveBook(@RequestBody BookRequestDto bookRequestDto) {
+        Book book = bookService.saveBook(bookRequestDto);
+        LinkedHashMap<String, Object> resultMap = new LinkedHashMap<>();
+        resultMap.put("status", "200");
+        resultMap.put("message", "success");
+        resultMap.put("data", book);
+        return new ResponseEntity<>(resultMap, HttpStatus.OK);
     }
-
-    // @PostMapping(consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE)
-    // public ResponseEntity<?> saveBook(@RequestBody BookRequestDto bookRequestDto)
-    // {
-    // Book book = bookService.saveBook(bookRequestDto);
-    // LinkedHashMap<String, Object> resultMap = new LinkedHashMap<>();
-    // resultMap.put("status", "200");
-    // resultMap.put("message", "success");
-    // resultMap.put("data", book);
-    // return new ResponseEntity<>(resultMap, HttpStatus.OK);
-    // }
 }
 
 // Untuk tes saveBook()

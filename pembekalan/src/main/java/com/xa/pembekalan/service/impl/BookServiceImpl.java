@@ -41,23 +41,19 @@ public class BookServiceImpl implements BookService {
         return bookResponseDtos;
     }
 
-    public Book saveBook(Book book) {
+    @Override
+    public Book saveBook(BookRequestDto bookRequestDto) {
+        Book book = new Book();
+        book.setCategory(bookRequestDto.getCategory());
+        book.setAuthor(bookRequestDto.getAuthor());
+        book.setPublisher(bookRequestDto.getPublisher());
+        book.setId(bookRequestDto.getId());
+        book.setTitle(bookRequestDto.getTitle());
+        book.setSynopsis(bookRequestDto.getSynopsis());
+        book.setStock(bookRequestDto.getStock());
+        book.setPublishedAt(bookRequestDto.getPublishedAt());
         return bookRepository.save(book);
     }
-
-    // @Override
-    // public Book saveBook(BookRequestDto bookRequestDto) {
-    // Book book = new Book();
-    // book.setCategory(bookRequestDto.getCategory());
-    // book.setAuthor(bookRequestDto.getAuthor());
-    // book.setPublisher(bookRequestDto.getPublisher());
-    // book.setId(bookRequestDto.getId());
-    // book.setTitle(bookRequestDto.getTitle());
-    // book.setSynopsis(bookRequestDto.getSynopsis());
-    // book.setStock(bookRequestDto.getStock());
-    // book.setPublishedAt(bookRequestDto.getPublishedAt());
-    // return bookRepository.save(book);
-    // }
 
     @Override
     public BookResponseDto getBookById(Integer id) {
