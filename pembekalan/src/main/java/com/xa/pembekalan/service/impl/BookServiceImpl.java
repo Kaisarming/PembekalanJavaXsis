@@ -4,7 +4,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.PostMapping;
 
 import com.xa.pembekalan.dto.request.BookRequestDto;
 import com.xa.pembekalan.dto.response.BookResponseDto;
@@ -38,19 +41,23 @@ public class BookServiceImpl implements BookService {
         return bookResponseDtos;
     }
 
-    @Override
-    public Book saveBook(BookRequestDto bookRequestDto) {
-        Book book = new Book();
-        book.setCategory(bookRequestDto.getCategory());
-        book.setAuthor(bookRequestDto.getAuthor());
-        book.setPublisher(bookRequestDto.getPublisher());
-        book.setId(bookRequestDto.getId());
-        book.setTitle(bookRequestDto.getTitle());
-        book.setSynopsis(bookRequestDto.getSynopsis());
-        book.setStock(bookRequestDto.getStock());
-        book.setPublishedAt(bookRequestDto.getPublishedAt());
+    public Book saveBook(Book book) {
         return bookRepository.save(book);
     }
+
+    // @Override
+    // public Book saveBook(BookRequestDto bookRequestDto) {
+    // Book book = new Book();
+    // book.setCategory(bookRequestDto.getCategory());
+    // book.setAuthor(bookRequestDto.getAuthor());
+    // book.setPublisher(bookRequestDto.getPublisher());
+    // book.setId(bookRequestDto.getId());
+    // book.setTitle(bookRequestDto.getTitle());
+    // book.setSynopsis(bookRequestDto.getSynopsis());
+    // book.setStock(bookRequestDto.getStock());
+    // book.setPublishedAt(bookRequestDto.getPublishedAt());
+    // return bookRepository.save(book);
+    // }
 
     @Override
     public BookResponseDto getBookById(Integer id) {

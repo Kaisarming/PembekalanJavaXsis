@@ -6,48 +6,16 @@
             <option th:each="a : ${authors}" th:value="${a.authorId}" th:text="${a.name}"></option>
         </select>
     </div>
-    <!-- <div class="mb-3">
+    <div class="mb-3">
         <label for="selectCategory" class="form-label">Category</label>
-        <select class="form-select" id="selectCategory" th:field="*{category.categoryId}" th:each="c : ${categories}">
-            <option th:value="${c.categoryId}">${c.name}</option>
+        <select class="form-select" id="selectCategory" th:field="*{category.id}">
+            <option th:each="c : ${categories}" th:value="${c.name}" th:text="${c.name}"></option>
         </select>
     </div>
     <div class="mb-3">
         <label for="selectPublisher" class="form-label">Publisher</label>
-        <select class="form-select" id="selectPublisher" th:field="*{publisher.publisherId}"
-            th:each="p : ${publishers}">
-            <option th:value="${p.publisherId}">${p.name}</option>
-        </select> -->
-    </div>
-    <button type="submit" class="btn btn-primary">Submit</button>
-</form>
-
-
-<!-- <form th:action="@{~/api/book}" th:object="${book}" method="post">
-    <input type="hidden" name="id" id="id" th:field="*{id}">
-    <div class="mb-3">
-        <label for="selectAuthor" class="form-label">Author's Name</label>
-        <select class="form-select" id="selectAuthor" th:each="a : ${author}">
-            <option th:value="${a.authorId}" th:field="*{authorId}">
-                "${a.name}"</option>
-        </select>
-    </div>
-    <div class="mb-3">
-        <label for="selectCategory" class="form-label">Book's Category</label>
-        <select class="form-select" id="selectCategory">
-            <option selected>Select Category's Name</option>
-            <option value="1">One</option>
-            <option value="2">Two</option>
-            <option value="3">Three</option>
-        </select>
-    </div>
-    <div class="mb-3">
-        <label for="selectPublisher" class="form-label">Book's Title</label>
-        <select class="form-select" id="selectPublisher">
-            <option selected>Select Publisher's Name</option>
-            <option value="1">One</option>
-            <option value="2">Two</option>
-            <option value="3">Three</option>
+        <select class="form-select" id="selectPublisher" th:field="*{publisher.id}">
+            <option th:value="${p.id}" th:each="p : ${publishers}" th:text="${p.name}"></option>
         </select>
     </div>
     <div class="mb-3">
@@ -66,5 +34,33 @@
         <label for="publishedAt" class="form-label">Published At</label>
         <input type="text" class="form-control" id="publishedAt" name="publishedAt" th:field="*{publishedAt}">
     </div>
-    <button type="submit" class="bg-primary text-white rounded" style="float: right">Save</button>
-</form> -->
+    <button type="submit" class="bg-primary text-white rounded" style="float: right"
+        onclick="submitForm()">Save</button>
+</form>
+
+<script>
+    function submitForm() {
+        const form = document.getElementById('bookForm');
+        const data = {
+            id: form.id.value,
+            authorId: form.selectAuthor.value,
+            categoryId: form.selectCategory.value,
+            publisherId: form.selectPublisher.value,
+            title: form.bookTitle.value,
+            synopsis: form.synopsis.value,
+            stock: form.stock.value,
+            publishedAt: form.publishedAt.value
+        };
+
+        fetch('/api/books', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(data)
+        })
+            .then(response => response.json())
+            .then(data => console.log(data))
+            .catch(error => console.error('Error:', error));
+    }
+</script>
