@@ -1,20 +1,20 @@
-<form th:object="${book}" id="bookForm" method="post">
+<form th:object="${book}" id="bookForm" method="post" th:action="@{/api/book/save}">
     <input type="hidden" name="id" id="id" th:field="*{id}">
     <div class="mb-3">
         <label for="selectAuthor" class="form-label">Author's Name</label>
-        <select class="form-select" id="selectAuthor" th:field="*{author.authorId}">
+        <select class="form-select" id="selectAuthor" name="selectAuthor" th:field="*{author.authorId}">
             <option th:each="a : ${authors}" th:value="${a.authorId}" th:text="${a.name}"></option>
         </select>
     </div>
     <div class="mb-3">
         <label for="selectCategory" class="form-label">Category</label>
-        <select class="form-select" id="selectCategory" th:field="*{category.id}">
+        <select class="form-select" id="selectCategory" name="selectCategory" th:field="*{category.id}">
             <option th:each="c : ${categories}" th:value="${c.name}" th:text="${c.name}"></option>
         </select>
     </div>
     <div class="mb-3">
         <label for="selectPublisher" class="form-label">Publisher</label>
-        <select class="form-select" id="selectPublisher" th:field="*{publisher.id}">
+        <select class="form-select" id="selectPublisher" name="selectPublisher" th:field="*{publisher.id}">
             <option th:value="${p.id}" th:each="p : ${publishers}" th:text="${p.name}"></option>
         </select>
     </div>
@@ -34,8 +34,7 @@
         <label for="publishedAt" class="form-label">Published At</label>
         <input type="date" class="form-control" id="publishedAt" name="publishedAt" th:field="*{publishedAt}">
     </div>
-    <button type="submit" class="bg-primary text-white rounded" style="float: right"
-        onclick="submitForm()">Save</button>
+    <button type="submit" class="bg-primary text-white rounded" style="float: right">Save</button>
 </form>
 
 <script>

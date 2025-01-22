@@ -11,33 +11,66 @@ function createForm() {
     });
 }
 
-function submitForm() {
-    var bookRequestDto = {
-        id: $("#id").val(),
-        author: $("#selectAuthor").val(),
-        category: $("#selectCategory").val(),
-        publisher: $("#selectPublisher").val(),
-        title: $("#bookTitle").val(),
-        synopsis: $("#sysnopsis").val(),
-        stock: $("#stock").val(),
-        publishedAt: $("#publishedAt").val(),
-    };
 
-    $.ajax({
-        url: "/api/book/save",
-        type: "POST",
-        contentType: "application/json",
-        data: JSON.stringify(bookRequestDto),
-        success: function (response) {
-            console.log("Response:", response);
-            alert("Book saved successfully!");
+function submitForm(event) {
+    event.preventDefault();
+    const form = event.target;
+    const data = {
+        id: form.id.value,
+        author: form.selectAuthor.authorId.value,
+        category: form.selectCategory.categoryId.value,
+        publisher: form.selectPublisher.publisherId.value,
+        title: form.bookTitle.value,
+        synopsis: form.synopsis.value,
+        stock: form.stock.value,
+        publishedAt: form.publishedAt.value
+    };
+    fetch('/save', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
         },
-        error: function (xhr, status, error) {
-            console.error("Error:", error);
-            alert("Failed to save book.");
-        }
-    });
+        body: JSON.stringify(data)
+    })
+        .then(response => response.json())
+        .then(data => {
+            console.log('Success:', data);
+            // Lakukan sesuatu dengan data yang diterima
+        })
+        .catch((error) => {
+            console.error('Error:', error);
+        });
 }
+
+
+
+// function submitForm() {
+//     var bookRequestDto = {
+//         id: $("#id").val(),
+//         author: $("#selectAuthor").val(),
+//         category: $("#selectCategory").val(),
+//         publisher: $("#selectPublisher").val(),
+//         title: $("#bookTitle").val(),
+//         synopsis: $("#sysnopsis").val(),
+//         stock: $("#stock").val(),
+//         publishedAt: $("#publishedAt").val(),
+//     };
+
+//     $.ajax({
+//         url: "/api/book/save",
+//         type: "POST",
+//         contentType: "application/json",
+//         data: JSON.stringify(bookRequestDto),
+//         success: function (response) {
+//             console.log("Response:", response);
+//             alert("Book saved successfully!");
+//         },
+//         error: function (xhr, status, error) {
+//             console.error("Error:", error);
+//             alert("Failed to save book.");
+//         }
+//     });
+// }
 
 // function submitForm() {
 //     const form = document.querySelector("#bookForm");
