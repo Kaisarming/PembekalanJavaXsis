@@ -1,6 +1,12 @@
 package com.xa.pembekalan.entity;
 
+import java.time.LocalDate;
 import java.util.Date;
+
+import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.format.annotation.DateTimeFormat.ISO;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -21,7 +27,10 @@ import lombok.NoArgsConstructor;
 @EqualsAndHashCode(callSuper = true)
 @NoArgsConstructor
 public class Book extends BaseEntity {
-    public Book(Category category, Publisher publisher, Author author, String title, Integer stock, Date publishedAt) {
+    // public Book(Category category, Publisher publisher, Author author, String
+    // title, Integer stock, Date publishedAt) {
+    public Book(Category category, Publisher publisher, Author author, String title, Integer stock,
+            LocalDate publishedAt) {
         this.category = category;
         this.publisher = publisher;
         this.author = author;
@@ -46,7 +55,6 @@ public class Book extends BaseEntity {
 
     @ManyToOne
     @JoinColumn(name = "authorId", referencedColumnName = "authorId")
-
     private Author author;
 
     @ManyToOne
@@ -63,5 +71,5 @@ public class Book extends BaseEntity {
 
     private Integer stock;
 
-    private Date publishedAt;
+    private LocalDate publishedAt;
 }

@@ -1,4 +1,4 @@
-<form th:object="${book}" id="bookForm" method="post" th:action="@{/api/book/save}">
+<form th:action="@{~/book/save}" th:object="${book}" id="bookForm" method="post">
     <input type="hidden" name="id" id="id" th:field="*{id}">
     <div class="mb-3">
         <label for="selectAuthor" class="form-label">Author's Name</label>
@@ -9,7 +9,7 @@
     <div class="mb-3">
         <label for="selectCategory" class="form-label">Category</label>
         <select class="form-select" id="selectCategory" name="selectCategory" th:field="*{category.id}">
-            <option th:each="c : ${categories}" th:value="${c.name}" th:text="${c.name}"></option>
+            <option th:each="c : ${categories}" th:value="${c.id}" th:text="${c.name}"></option>
         </select>
     </div>
     <div class="mb-3">

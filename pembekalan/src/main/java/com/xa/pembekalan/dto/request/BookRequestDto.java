@@ -1,5 +1,6 @@
 package com.xa.pembekalan.dto.request;
 
+import java.time.LocalDate;
 import java.util.Date;
 
 import com.xa.pembekalan.entity.Author;
@@ -18,5 +19,5 @@ public class BookRequestDto {
     private String title;
     private String synopsis;
     private Integer stock;
-    private Date publishedAt;
+    private LocalDate publishedAt;
 }

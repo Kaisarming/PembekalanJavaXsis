@@ -1,5 +1,6 @@
 package com.xa.pembekalan;
 
+import java.time.ZoneId;
 import java.util.List;
 import java.util.Locale;
 
@@ -70,9 +71,14 @@ public class PembekalanApplication {
 				Author authorSeed = new Author(faker.book().author(), faker.book().title());
 				authorRepository.save(authorSeed);
 
+				// Book bookSeed = new Book(categorySeed, publisherSeed, authorSeed,
+				// authorSeed.getPublishedBook(),
+				// faker.number().randomDigit(),
+				// faker.date().birthday());
 				Book bookSeed = new Book(categorySeed, publisherSeed, authorSeed, authorSeed.getPublishedBook(),
-						faker.number().randomDigit(),
-						faker.date().birthday());
+						faker.number().randomDigit(), faker.date().birthday().toInstant()
+								.atZone(ZoneId.systemDefault())
+								.toLocalDate());
 				bookRepository.save(bookSeed);
 			}
 		};
