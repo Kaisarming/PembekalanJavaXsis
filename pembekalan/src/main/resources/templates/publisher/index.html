@@ -55,13 +55,22 @@
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
-                        <!-- <div class="mb-3">
+                        <form th:object="${publisher}" id="publisherForm" method="post">
+                            <input type="hidden" name="id" id="id" th:field="*{id}">
 
-                        <label for="name" class="form-label">Email address</label>
+                            <div class="mb-3">
+                                <label for="name" class="form-label">Publisher's Name</label>
+                                <input type="text" class="form-control" id="name" name="name" th:field="*{name}">
+                            </div>
 
-                        <input type="text" class="form-control" id="name" name="name">
-
-                    </div> -->
+                            <div class="mb-3">
+                                <label for="address" class="form-label">Book's Title</label>
+                                <input type="text" class="form-control" id="address" name="address"
+                                    th:field="*{address}">
+                            </div>
+                            <button type="submit" id="publisherSubmitBtn" class="bg-primary text-white rounded"
+                                style="float: right">Save</button>
+                        </form>
                     </div>
 
                 </div>
