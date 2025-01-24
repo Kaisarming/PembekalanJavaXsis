@@ -61,7 +61,7 @@ public class PublisherControllerApi {
         return new ResponseEntity<>(resultMap, HttpStatus.OK);
     }
 
-    @PutMapping("/{id}")
+    @PutMapping("save/{id}")
     public ResponseEntity<?> updatePublisher(@PathVariable Integer id,
             @RequestBody PublisherRequestDto publisherRequestDto) {
         PublisherResponseDto publisherResponseDto = publisherService.getPublisherById(id);

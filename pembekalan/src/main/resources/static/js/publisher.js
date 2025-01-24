@@ -9,9 +9,10 @@ document.getElementById("publisherSubmitBtn").onclick = function () {
     let name = document.getElementById("name").value;
     let address = document.getElementById("address").value;
     let method = idPublisher ? "PUT" : "POST";
+    let url = idPublisher ? `/publisher/api/save/${idPublisher}` : "/publisher/api/save";
     $.ajax({
         type: method,
-        url: "/publisher/api/save",
+        url: url,
         data: JSON.stringify({
             "id": idPublisher,
             "name": name,
@@ -37,7 +38,7 @@ function editForm(id) {
         url: `/publisher/api/${id}`,
         success: function (response) {
             console.log("Data edit form berhasil diambil!");
-            //document.getElementById("id").value = response.data.id;
+            document.getElementById("id").value = response.data.id;
             document.getElementById("name").value = response.data.name;
             document.getElementById("address").value = response.data.address;
             $("#publisherFormModal").modal("show");
