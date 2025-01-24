@@ -50,13 +50,13 @@ function editForm(id) {
 }
 
 function deletePublisher(id) {
-    //id = document.getElementById("publisherDeleteBtn").value;
+    let deleteid = document.getElementById("publisherDeleteBtn").value;
 
     $.ajax({
         type: "DELETE",
         url: `/publisher/api/${id}`,
         data: JSON.stringify({
-            "id": id
+            "id": deleteid
         }),
         contentType: "application/json",
         success: function (response) {
