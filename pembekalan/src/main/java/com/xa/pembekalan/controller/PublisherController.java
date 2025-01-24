@@ -47,32 +47,4 @@ public class PublisherController {
         view.addObject("publisher", publisher);
         return view;
     }
-
-    @GetMapping("/api")
-    public ResponseEntity<?> getAllPublishers() {
-        List<PublisherResponseDto> publisherResponseDtos = publisherService.getAllPublishers();
-        LinkedHashMap<String, Object> resultMap = new LinkedHashMap<>();
-        resultMap.put("status", "200");
-        resultMap.put("message", "success");
-        resultMap.put("data", publisherResponseDtos);
-        return new ResponseEntity<>(resultMap, HttpStatus.OK);
-    }
-
-    // @GetMapping("/form")
-    // public ModelAndView showCreateForm() {
-    // ModelAndView view = new ModelAndView("publisher/form");
-    // Publisher publisher = new Publisher();
-    // view.addObject("publisher", publisher);
-    // return view;
-    // }
-
-    @PostMapping("")
-    public ResponseEntity<?> savePublisher(@RequestBody PublisherRequestDto publisherRequestDto) {
-        Publisher publisher = publisherService.savePublisher(publisherRequestDto);
-        LinkedHashMap<String, Object> resultMap = new LinkedHashMap<>();
-        resultMap.put("status", "200");
-        resultMap.put("message", "success");
-        resultMap.put("data", publisher);
-        return new ResponseEntity<>(resultMap, HttpStatus.OK);
-    }
 }

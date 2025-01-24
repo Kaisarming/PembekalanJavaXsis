@@ -1,26 +1,19 @@
 function openForm() {
     $('#publisherFormModal').modal('show');
-    // $.ajax({
-    //     type: "get",
-    //     url: "/publisher/form",
-    //     contentType: "html",
-    //     success: function (publisherForm) {
-    //         $('#publisherFormModal').modal('show');
-    //         $('.modal-title').html('Publisher Form');
-    //         $('.modal-body').html(publisherForm);
-    //     }
-    // });
 }
 
 document.getElementById("publisherSubmitBtn").onclick = function () {
 
     console.log("tes save btn");
+    let idPublisher = document.getElementById("id").value;
     let name = document.getElementById("name").value;
     let address = document.getElementById("address").value;
+    let method = idPublisher ? "PUT" : "POST";
     $.ajax({
-        type: "POST",
-        url: "/publisher",
+        type: method,
+        url: "/publisher/api/save",
         data: JSON.stringify({
+            "id": idPublisher,
             "name": name,
             "address": address
         }),
@@ -37,25 +30,41 @@ document.getElementById("publisherSubmitBtn").onclick = function () {
 }
 
 function editForm(id) {
+    console.log("Edit button berfungsi!");
+
     $.ajax({
-        type: "get",
-        url: `/publisher/edit/${id}`,
-        contentType: "html",
-        success: function (authorForm) {
-            $('#publisherFormModal').modal('show');
-            $('.modal-title').html('Publisher Edit Form');
-            $('.modal-body').html(authorForm);
+        type: "GET",
+        url: `/publisher/api/${id}`,
+        success: function (response) {
+            console.log("Data edit form berhasil diambil!");
+            //document.getElementById("id").value = response.data.id;
+            document.getElementById("name").value = response.data.name;
+            document.getElementById("address").value = response.data.address;
+            $("#publisherFormModal").modal("show");
+        },
+        error: function (xhr, textStatus, error) {
+            console.log("Data edit form gagal diambil!");
         }
     });
 }
 
 function deletePublisher(id) {
+    //id = document.getElementById("publisherDeleteBtn").value;
+
     $.ajax({
-        type: "get",
-        url: `/publisher/delete/${id}`,
-        contentType: "html",
+        type: "DELETE",
+        url: `/publisher/api/${id}`,
+        data: JSON.stringify({
+            "id": id
+        }),
+        contentType: "application/json",
         success: function (response) {
+            console.log("Data berhasil terhapus!");
+            //$("#publisherFormModal").modal("hide");
             location.reload();
+        },
+        error: function (xhr, textStatus, error) {
+            console.log("Data gagal terhapus!");
         }
     });
 }
