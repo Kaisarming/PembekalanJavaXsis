@@ -35,12 +35,16 @@ public class PublisherControllerApi {
     public ResponseEntity<?> getAllPublishers() {
         List<PublisherResponseDto> publisherResponseDtos = publisherService.getAllPublishers();
         LinkedHashMap<String, Object> resultMap = new LinkedHashMap<>();
+        // put hanya bilt-in method biasa untuk LinkedHashMap
         resultMap.put("status", "200");
         resultMap.put("message", "success");
         resultMap.put("data", publisherResponseDtos);
+        // Return dari ResponseEntity ini bisa kita lihat menggunakan Postman
         return new ResponseEntity<>(resultMap, HttpStatus.OK);
     }
 
+    // @PathVariable digunakan untuk mengekstrak id yang ada pada API Endpoint (API
+    // URL)
     @GetMapping("/{id}")
     public ResponseEntity<?> getPublisherById(@PathVariable Integer id) {
         PublisherResponseDto publisherResponseDto = publisherService.getPublisherById(id);
@@ -51,6 +55,8 @@ public class PublisherControllerApi {
         return new ResponseEntity<>(resultMap, HttpStatus.OK);
     }
 
+    // @RequestBody digunakan untuk mengonversi JSON object menjadi object Java yang
+    // sesuai
     @PostMapping("/save")
     public ResponseEntity<?> savePublisher(@RequestBody PublisherRequestDto publisherRequestDto) {
         Publisher publisher = publisherService.savePublisher(publisherRequestDto);

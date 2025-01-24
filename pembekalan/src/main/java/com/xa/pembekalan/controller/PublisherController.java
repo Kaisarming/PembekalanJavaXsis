@@ -40,6 +40,7 @@ public class PublisherController {
     public ModelAndView getAllPublishers(Model model) {
         ModelAndView view = new ModelAndView("publisher/index");
         String title = "Publisher Page";
+        // Untuk get data dari api publisher dan menjadikannya return berupa Map object
         Map response = restTemplate.getForObject(ApiEndpoints.PUBLISHERS, Map.class);
         model.addAttribute("publishers", response.get("data"));
         model.addAttribute("title", title);

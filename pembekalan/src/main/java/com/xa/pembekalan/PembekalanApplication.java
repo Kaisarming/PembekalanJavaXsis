@@ -25,6 +25,7 @@ import com.xa.pembekalan.repository.PublisherRepository;
 @SpringBootApplication
 public class PembekalanApplication {
 
+	// @Autowired digunakan untuk Dependency Injection
 	@Autowired
 	CategoryRepository categoryRepository;
 
@@ -44,6 +45,11 @@ public class PembekalanApplication {
 		SpringApplication.run(PembekalanApplication.class, args);
 	}
 
+	/*
+	 * Metode CommandLineRunner ini akan dijalankan setelah aplikasi Spring Boot
+	 * selesai diinisialisasi. CommandLineRunner sering digunakan untuk menjalankan
+	 * kode inisialisasi atau setup saat aplikasi dimulai.
+	 */
 	@Bean
 	CommandLineRunner commandLineRunner() {
 		return args -> {
